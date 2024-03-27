@@ -1,1 +1,10 @@
-# python_face_recognition
+# Python Pörssisähkö
+
+## Käyttöön otto
+```
+pip install requests
+```
+
+```
+python/python3 App.py
+```
