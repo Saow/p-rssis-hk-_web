@@ -19,6 +19,7 @@ html_template = """
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Electricity Price</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Current Electricity Price:</h1>
@@ -30,6 +31,10 @@ html_template = """
 # Path to save HTML file
 html_file_path = "index.html"
 
+# Initial check when the script starts
+initial_price = fetch_and_format_price()
+print(f"Initial check completed. Current price: {initial_price} c/kWh")
+
 # Main loop to continuously update HTML
 while True:
     # Get the current time
@@ -39,15 +44,15 @@ while True:
     if current_time.endswith(":00"):
         # Fetch and format the price
         formatted_price = fetch_and_format_price()
-        
+
         # Update HTML template with the latest price
         html_content = html_template.format(formatted_price)
-        
+
         # Write HTML content to file
         with open(html_file_path, "w") as html_file:
             html_file.write(html_content)
-            print(f"Updated HTML at {current_time} with price: {formatted_price} €/MWh")
-        
+            print(f"Updated HTML at {current_time} with price: {formatted_price} c/kWh")
+
         # Wait for 1 hour before updating again
         time.sleep(3600)  # 3600 seconds = 1 hour
     else:
